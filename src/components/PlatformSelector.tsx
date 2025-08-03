@@ -4,13 +4,12 @@ import usePlatforms from "../hooks/usePlatforms";
 import PlatformSelectorSkeleton from "./PlatformSelectorSkeleton";
 import type { Platform } from "../hooks/useGames";
 
-interface Props{
-    onSelectPlatform: (platform :Platform) => void;
-    selectedPlatform: Platform | null;
+interface Props {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
 }
 
-
-const PlatformSelector = ({ onSelectPlatform , selectedPlatform }: Props) => {
+const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data, error, isLoading } = usePlatforms();
   const skeletons = [1];
 
@@ -23,11 +22,16 @@ const PlatformSelector = ({ onSelectPlatform , selectedPlatform }: Props) => {
       ) : (
         <Menu>
           <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-            {selectedPlatform?.name || 'Platforms'}
+            {selectedPlatform?.name || "Platforms"}
           </MenuButton>
           <MenuList>
             {data.map((platform) => (
-              <MenuItem onClick={() => onSelectPlatform(platform)} key={platform.id}>{platform.name}</MenuItem>
+              <MenuItem
+                onClick={() => onSelectPlatform(platform)}
+                key={platform.id}
+              >
+                {platform.name}
+              </MenuItem>
             ))}
           </MenuList>
         </Menu>
